@@ -19,7 +19,7 @@ function Popular() {
 
  
     const popularArray = popularMovie.slice(0,5)
-    console.log(popularArray)
+    // console.log(popularArray)
   return (
     <>
       <div className="popular-container">

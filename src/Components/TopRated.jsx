@@ -19,12 +19,12 @@ function TopRated() {
 
  
     const TopRatedArray = topRatedMovie.slice(0,5)
-    console.log(TopRatedArray)
+    // console.log(TopRatedArray)
   return (
     <>
       <div className="top-rated-container">
           <div className="top-rated">
-              <h2>What's Popular</h2>
+              <h2>Top Rated</h2>
               <div className="toggle">
             <p className="toggle-option active" data-option="day">
               Movies

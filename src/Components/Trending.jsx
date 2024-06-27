@@ -15,7 +15,7 @@ function Trending() {
   }, [dispatch]);
 
   const trendingArray = trendingMovieByDay.slice(0, 5);
-  console.log(trendingArray);
+  // console.log(trendingArray);
   return (
     <>
       <div className="trending-container">
