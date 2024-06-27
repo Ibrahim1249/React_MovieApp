@@ -2,28 +2,28 @@ import React, { useEffect } from 'react'
 import SingleCard from './SingleCard'
 
 import { useDispatch , useSelector } from 'react-redux'
-import { fetchPopularMovie } from '../Slice/slice';
+import { fetchTopRatedMovie } from '../Slice/slice';
 
 
 
-function Popular() {
+function TopRated() {
 
     const dispatch = useDispatch();
-    const {popularMovie} = useSelector((state)=>{
+    const {topRatedMovie} = useSelector((state)=>{
         return state.movieReducer;
     })
 
     useEffect(()=>{
-         dispatch(fetchPopularMovie())
+         dispatch(fetchTopRatedMovie())
     },[dispatch])
 
  
-    const popularArray = popularMovie.slice(0,5)
-    console.log(popularArray)
+    const TopRatedArray = topRatedMovie.slice(0,5)
+    console.log(TopRatedArray)
   return (
     <>
-      <div className="popular-container">
-          <div className="popular">
+      <div className="top-rated-container">
+          <div className="top-rated">
               <h2>What's Popular</h2>
               <div className="toggle">
             <p className="toggle-option active" data-option="day">
@@ -35,8 +35,8 @@ function Popular() {
           </div>
           </div>
 
-          <div className="popular-movies">
-           {popularArray && popularArray.map((movie,index)=>{
+          <div className="top-rated-movies">
+           {TopRatedArray && TopRatedArray.map((movie,index)=>{
               return <SingleCard movie={movie} key={index}/>
            })}
         
@@ -46,4 +46,4 @@ function Popular() {
   )
 }
 
-export default Popular
+export default TopRated

@@ -4,7 +4,7 @@ function Navbar() {
   return (
     <>
       <nav>
-         <h3>Movie</h3>
+         <Link to="/"><h3>Movie</h3></Link>
          <ul>
             <li><Link to="/movies">Movies</Link></li>
             <li><Link to="/shows">Tv Shows</Link></li>

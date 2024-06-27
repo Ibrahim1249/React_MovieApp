@@ -21,6 +21,15 @@ export const fetchPopularMovie = createAsyncThunk("fetchPopularMovie", async()=>
    }
 })
 
+export const fetchTopRatedMovie = createAsyncThunk("fetchTopRated",async()=>{
+   try{
+     const result = await axios.get("https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&region=India&api_key="+import.meta.env.VITE_TMDB_API_KEY);
+     return result.data.results;
+   }catch(err){
+     return err
+   }
+})
+
 
  const slice = createSlice({
     name:"movieSlice",
@@ -28,6 +37,7 @@ export const fetchPopularMovie = createAsyncThunk("fetchPopularMovie", async()=>
         trendingMovieByDay: [],
         trendingMovieByWeek : [],
         popularMovie:[],
+        topRatedMovie:[],
         status:"idle",
         error:null
     },
@@ -51,6 +61,14 @@ export const fetchPopularMovie = createAsyncThunk("fetchPopularMovie", async()=>
           state.popularMovie = action.payload;
         })
         .addCase(fetchPopularMovie.rejected, (state, action) => {
+          state.status = "There is an error";
+          state.error = action.payload;
+        }).addCase(fetchTopRatedMovie.pending,(state,action)=>{
+           state.status = "Loading...";
+        }).addCase(fetchTopRatedMovie.fulfilled, (state, action) => {
+          state.topRatedMovie = action.payload;
+        })
+        .addCase(fetchTopRatedMovie.rejected, (state, action) => {
           state.status = "There is an error";
           state.error = action.payload;
         });

@@ -21,6 +21,7 @@ h3{
   font-size: 30px;
   color: aliceblue;
   font-family: Outfit , sans-serif;
+  cursor: pointer;
 }
 ul{
   list-style: none;
@@ -81,50 +82,100 @@ a{
 .btn{
   padding: 0.5rem;
 }
-.trending-container , .popular-container{
+.trending-container , .popular-container , .top-rated-container{
   padding: 2rem 12%;
   background-color: #04152D;
   color: white;
   font-family: Outfit , sans-serif;
   width: 100%;
 }
-.trending , .popular{
+.trending , .popular , .top-rated{
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1rem;
+  padding: 0px 0.75rem;
 }
+.toggle {
+  display: flex;
+  gap: 0.5rem;
+  background-color: rgb(255, 255, 255);
+  padding: 0.25rem;
+  border-radius: 30px;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* .toggle-option {
+  padding: 0.35rem 1.5rem;
+  border-radius: 20px;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.toggle::before {
+  content: '';
+  position: absolute;
+  top: 0.25rem;
+  left: 0.25rem;
+  right: 50%;
+  bottom: 0.25rem;
+  background: linear-gradient(98.37deg, #f89e00 .99%, #da2f68 100%);
+  border-radius: 20px;
+  transition: right 0.3s ease, left 0.3s ease;
+}
+
+.toggle-option.active {
+  color: white;
+}
+
+.toggle[data-active="week"]::before {
+  left: 50%;
+  right: 0.25rem;
+} */
+
 .toggle{
   display: flex;
   gap: 0.5rem;
+  background-color: rgb(255, 255, 255);
+  padding: 0.25rem ;
+  border-radius: 30px;
+  justify-content: space-between;
 }
-.trending-movies , .popular-movies{
+.toggle .toggle-option{
+  padding: 0.35rem 1rem;
+  border-radius: 20px;
+  color: #04152D;
+}
+.toggle .toggle-option.active{
+  background: linear-gradient(98.37deg, #f89e00 .99%, #da2f68 100%);
+  color: white;
+}
+.trending-movies , .popular-movies , .top-rated-movies{
   display: flex; 
   /* gap: 0.5rem; */
   flex-wrap: wrap;
   justify-content: space-between;
 }
 .card-container{
-  width: 20%;
-  height: 450px;
-  /* border: 2px solid red; */
+  width: 19.5%;
   padding: 1rem;
   cursor: pointer;
+  position: relative;
 }
 .image{
   width: 100%;
-  height: 80%;
-  /* border: 2px solid rebeccapurple; */
+  height: 320px;
   position: relative;
-  /* z-index: 5; */
   margin-bottom: 1rem;
-  
 }
 .image img{
   width: 100%;
   height: 100%;
   border-radius: 10px;
-  object-fit: cover;
  
 
 }
@@ -133,7 +184,7 @@ a{
   width: 100%;
   height: 100%;
   top: 0;
-  background-color: transparent;
+  background-color: #36333321;
   /* z-index: 4; */
 }
 .rating{
@@ -143,7 +194,7 @@ a{
   background-color: #fff;
   border-radius: 50%;
   left: 2%;
-  padding: 0.25rem;
+  padding: 0.15rem;
 }
 .genre{
   position: absolute;
