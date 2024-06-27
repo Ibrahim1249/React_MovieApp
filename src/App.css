@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Reddit+Mono:wght@200..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav{
+  background-color: #031022;
+  padding: 1rem 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 11;
+
+}
+h3{
+  font-size: 30px;
+  color: aliceblue;
+  font-family: Outfit , sans-serif;
+}
+ul{
+  list-style: none;
+  display: flex;
+ 
+}
+li{
+  padding: 0px 8px;
+  margin: 0px 8px;
+  font-family: Outfit , sans-serif;
+}
+a{
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+.hero-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ padding-top: 10%;
+ padding-bottom: 8%;
+  background-color: #04152D;
+}
+
+.hero{
+  /* border: 2px solid red; */
+  padding: 1rem;
+  width: 50%;
+  text-align: center;
+}
+.hero h1{
+  font-size: 70px;
+  color: white;
+  font-family: Raleway , sans-serif;
+  margin-bottom: 0.25rem;
+}
+.hero p{
+   font-size: 20px;
+   color: white;
+   font-family: Raleway , sans-serif;
+   margin-bottom: 1.5rem;
+}
+.search {
+  /* border: 2px solid red; */
+  width: 60%;
+  margin: 0px auto;
+  padding: 0.5rem;
+  display: flex;
+}
+.search input{
+  width: 100%;
+  padding: 0.5rem 1rem; 
+  /* border-radius: 10; */
+  font-family: Outfit , sans-serif;
+}
+.btn{
+  padding: 0.5rem;
+}
+.trending-container , .popular-container{
+  padding: 2rem 12%;
+  background-color: #04152D;
+  color: white;
+  font-family: Outfit , sans-serif;
+  width: 100%;
+}
+.trending , .popular{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.toggle{
+  display: flex;
+  gap: 0.5rem;
+}
+.trending-movies , .popular-movies{
+  display: flex; 
+  /* gap: 0.5rem; */
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.card-container{
+  width: 20%;
+  height: 450px;
+  /* border: 2px solid red; */
+  padding: 1rem;
+  cursor: pointer;
+}
+.image{
+  width: 100%;
+  height: 80%;
+  /* border: 2px solid rebeccapurple; */
+  position: relative;
+  /* z-index: 5; */
+  margin-bottom: 1rem;
+  
+}
+.image img{
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+ 
+
+}
+.overlay{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background-color: transparent;
+  /* z-index: 4; */
+}
+.rating{
+  width: 50px;
+  position: absolute;
+  bottom: -6%;
+  background-color: #fff;
+  border-radius: 50%;
+  left: 2%;
+  padding: 0.25rem;
+}
+.genre{
+  position: absolute;
+  right: 5%;
+  bottom: 4%;
+  display: flex;
+  gap: 0.5rem;
+  font-size: 14px;
+
+}
+.genre p{
+  background-color: #DA2F68;
+  padding: 0.25rem;
+  border-radius: 5px;
+}
+.movie-info{
+  margin-top: 2rem;
+}
+.movie-info p:first-of-type{
+  font-size: 22px;
+  margin-bottom: 0.5rem;
+
+}
+.movie-info p:last-of-type{
+  font-size: 15px;
+  margin-bottom: 0.5rem;
+  color: #767F8C;
+}
