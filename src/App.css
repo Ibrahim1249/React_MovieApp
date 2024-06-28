@@ -66,30 +66,40 @@ a{
    font-family: Raleway , sans-serif;
    margin-bottom: 1.5rem;
 }
-.search {
-  /* border: 2px solid red; */
-  width: 60%;
+
+.search{
+  width: 80%;
   margin: 0px auto;
-  padding: 0.5rem;
+  /* padding: 0.5rem; */
   display: flex;
-}
-.search input{
-  width: 100%;
-  padding: 0.5rem 1rem; 
-  /* border-radius: 10; */
   font-family: Outfit , sans-serif;
 }
-.btn{
-  padding: 0.5rem;
+.search input, .search .btn{
+  height: 50px;
+  border: 1px solid #e1e1e1;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  font-size: 18px;
+  outline: none;
 }
-.trending-container , .popular-container , .top-rated-container{
+.search input{
+  width: 80%;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+.search .btn{
+  width: 20%;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+.display-container {
   padding: 2rem 12%;
   background-color: #04152D;
   color: white;
   font-family: Outfit , sans-serif;
   width: 100%;
 }
-.trending , .popular , .top-rated{
+.display-container .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -106,36 +116,6 @@ a{
   position: relative;
 }
 
-/* .toggle-option {
-  padding: 0.35rem 1.5rem;
-  border-radius: 20px;
-  color: #333;
-  cursor: pointer;
-  transition: color 0.3s ease;
-  position: relative;
-  z-index: 1;
-}
-
-.toggle::before {
-  content: '';
-  position: absolute;
-  top: 0.25rem;
-  left: 0.25rem;
-  right: 50%;
-  bottom: 0.25rem;
-  background: linear-gradient(98.37deg, #f89e00 .99%, #da2f68 100%);
-  border-radius: 20px;
-  transition: right 0.3s ease, left 0.3s ease;
-}
-
-.toggle-option.active {
-  color: white;
-}
-
-.toggle[data-active="week"]::before {
-  left: 50%;
-  right: 0.25rem;
-} */
 
 .toggle{
   display: flex;
@@ -144,17 +124,21 @@ a{
   padding: 0.25rem ;
   border-radius: 30px;
   justify-content: space-between;
+
 }
 .toggle .toggle-option{
   padding: 0.35rem 1rem;
   border-radius: 20px;
   color: #04152D;
+  cursor: pointer;
+  transition: opacity 0.5s, color 0.5s ;
 }
 .toggle .toggle-option.active{
   background: linear-gradient(98.37deg, #f89e00 .99%, #da2f68 100%);
   color: white;
 }
-.trending-movies , .popular-movies , .top-rated-movies{
+
+.display-movies{
   display: flex; 
   /* gap: 0.5rem; */
   flex-wrap: wrap;
@@ -165,6 +149,7 @@ a{
   padding: 0.25rem;
   cursor: pointer;
   position: relative;
+  margin-bottom: 1rem;
 }
 .image{
   width: 100%;

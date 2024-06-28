@@ -3,75 +3,99 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchMovieOfTheDay = createAsyncThunk("fetchMovie", async()=>{
-   try{
-     const result = await axios.get("https://api.themoviedb.org/3/trending/movie/week?language=en-US&api_key="+import.meta.env.VITE_TMDB_API_KEY);
-      return result.data.results;
-   }catch(err){
-      return err
-   }
+ export const fetchTrending = createAsyncThunk("fetchTrending",async()=>{
+      try{
+         const [day , week] = await Promise.all([
+           axios.get("https://api.themoviedb.org/3/trending/movie/day?language=en-US&api_key="+import.meta.env.VITE_TMDB_API_KEY),
+           axios.get("https://api.themoviedb.org/3/trending/movie/week?language=en-US&api_key="+import.meta.env.VITE_TMDB_API_KEY)
+         ]);
+         return {
+           trendingMovieByDay: day.data.results,
+           trendingMovieByWeek: week.data.results
+         }
+      }catch(err){
+        return err;
+      }
+ })
+
+ export const fetchPopular = createAsyncThunk("fetchPopular",async()=>{
+  try{
+     const [movies , TvShows] = await Promise.all([
+       axios.get("https://api.themoviedb.org/3/movie/popular?language=en-US&api_key="+import.meta.env.VITE_TMDB_API_KEY),
+       axios.get("https://api.themoviedb.org/3/tv/popular?language=en-US&api_key="+import.meta.env.VITE_TMDB_API_KEY)
+     ]);
+     return {
+      popularMovies: movies.data.results,
+      popularTVShows: TvShows.data.results
+     }
+  }catch(err){
+    return err;
+  }
 })
 
-export const fetchPopularMovie = createAsyncThunk("fetchPopularMovie", async()=>{
-   try{
-     const result = await axios.get("https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&region=India&api_key="+import.meta.env.VITE_TMDB_API_KEY);
-      return result.data.results;
-   }catch(err){
-      return err
-   }
+export const fetchTopRated = createAsyncThunk("fetchTopRated",async()=>{
+  try{
+     const [movies , TvShows] = await Promise.all([
+       axios.get("https://api.themoviedb.org/3/movie/top_rated?language=en-US&api_key="+import.meta.env.VITE_TMDB_API_KEY),
+       axios.get("https://api.themoviedb.org/3/tv/top_rated?language=en-US&api_key="+import.meta.env.VITE_TMDB_API_KEY)
+     ]);
+     return {
+      topRatedMovies: movies.data.results,
+      topRatedTVShows: TvShows.data.results
+     }
+  }catch(err){
+    return err;
+  }
 })
-
-export const fetchTopRatedMovie = createAsyncThunk("fetchTopRated",async()=>{
-   try{
-     const result = await axios.get("https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&region=India&api_key="+import.meta.env.VITE_TMDB_API_KEY);
-     return result.data.results;
-   }catch(err){
-     return err
-   }
-})
-
 
  const slice = createSlice({
     name:"movieSlice",
     initialState:{
         trendingMovieByDay: [],
         trendingMovieByWeek : [],
-        popularMovie:[],
-        topRatedMovie:[],
+        popularMovies:[],
+        popularTVShows:[],
+        topRatedMovies:[],
+        topRatedTVShows:[],
         status:"idle",
         error:null
     },
     reducers:{},
     extraReducers: (builder) => {
       builder
-        .addCase(fetchMovieOfTheDay.pending, (state, action) => {
+        .addCase(fetchTrending.pending, (state, action) => {
           state.status = "Loading...";
         })
-        .addCase(fetchMovieOfTheDay.fulfilled, (state, action) => {
-          state.trendingMovieByDay = action.payload;
+        .addCase(fetchTrending.fulfilled, (state, action) => {
+          state.trendingMovieByDay = action.payload.trendingMovieByDay;
+          state.trendingMovieByWeek = action.payload.trendingMovieByWeek;
         })
-        .addCase(fetchMovieOfTheDay.rejected, (state, action) => {
+        .addCase(fetchTrending.rejected, (state, action) => {
           state.status = "There is an error";
           state.error = action.payload;
         })
-        .addCase(fetchPopularMovie.pending, (state, action) => {
+        .addCase(fetchPopular.pending, (state, action) => {
           state.status = "Loading...";
         })
-        .addCase(fetchPopularMovie.fulfilled, (state, action) => {
-          state.popularMovie = action.payload;
+        .addCase(fetchPopular.fulfilled, (state, action) => {
+          state.popularMovies = action.payload.popularMovies;
+          state.popularTVShows = action.payload.popularTVShows;
         })
-        .addCase(fetchPopularMovie.rejected, (state, action) => {
+        .addCase(fetchPopular.rejected, (state, action) => {
           state.status = "There is an error";
           state.error = action.payload;
-        }).addCase(fetchTopRatedMovie.pending,(state,action)=>{
-           state.status = "Loading...";
-        }).addCase(fetchTopRatedMovie.fulfilled, (state, action) => {
-          state.topRatedMovie = action.payload;
         })
-        .addCase(fetchTopRatedMovie.rejected, (state, action) => {
+        .addCase(fetchTopRated.pending, (state, action) => {
+          state.status = "Loading...";
+        })
+        .addCase(fetchTopRated.fulfilled, (state, action) => {
+          state.topRatedMovies = action.payload.topRatedMovies;
+          state.topRatedTVShows = action.payload.topRatedTVShows;
+        })
+        .addCase(fetchTopRated.rejected, (state, action) => {
           state.status = "There is an error";
           state.error = action.payload;
-        });
+        })
     },
   });
 export const sliceReducer = slice.reducer;
