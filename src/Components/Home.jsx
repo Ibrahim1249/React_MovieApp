@@ -24,7 +24,6 @@ function Home() {
   dispatch(fetchTopRated());
 },[])
 
-console.log(trendingMovieByDay)
   return (
     <>
      <Hero />

@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Hero() {
+  const [searchTerm , setSearchTerm] = useState("");
+  const navigate = useNavigate();
+  function handleClick(e){
+    e.preventDefault();
+      navigate("/search/" + searchTerm)
+  }
+
   return (
     <>
       <div className="hero-container">
@@ -14,8 +22,10 @@ function Hero() {
             <input
               type="text"
               placeholder="Search for a movie or Tv shows ..."
+              value={searchTerm}
+              onChange={(e)=>{setSearchTerm((e.target.value).toLowerCase())}}
             />
-            <button className="btn">Search</button>
+            <button className="btn" onClick={(e)=>{handleClick(e)}}>Search</button>
           </div>
         </div>
       </div>

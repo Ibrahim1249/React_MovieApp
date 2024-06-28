@@ -48,6 +48,14 @@ export const fetchTopRated = createAsyncThunk("fetchTopRated",async()=>{
   }
 })
 
+export const fetchSearchTerm = createAsyncThunk("fetchSearchTerm",async(searchTerm)=>{
+    try{
+       const result = await axios.get(`https://api.themoviedb.org/3/search/multi?query=${searchTerm}&include_adult=false&language=en-US&api_key=${import.meta.env.VITE_TMDB_API_KEY}`)
+       return result.data.results;
+    }catch(err){
+      return err;
+    }
+})
  const slice = createSlice({
     name:"movieSlice",
     initialState:{
@@ -57,6 +65,7 @@ export const fetchTopRated = createAsyncThunk("fetchTopRated",async()=>{
         popularTVShows:[],
         topRatedMovies:[],
         topRatedTVShows:[],
+        searchResults:[],
         status:"idle",
         error:null
     },
@@ -93,6 +102,16 @@ export const fetchTopRated = createAsyncThunk("fetchTopRated",async()=>{
           state.topRatedTVShows = action.payload.topRatedTVShows;
         })
         .addCase(fetchTopRated.rejected, (state, action) => {
+          state.status = "There is an error";
+          state.error = action.payload;
+        })
+        .addCase(fetchSearchTerm.pending, (state, action) => {
+          state.status = "Loading...";
+        })
+        .addCase(fetchSearchTerm.fulfilled, (state, action) => {
+          state.searchResults = action.payload;
+        })
+        .addCase(fetchSearchTerm.rejected, (state, action) => {
           state.status = "There is an error";
           state.error = action.payload;
         })

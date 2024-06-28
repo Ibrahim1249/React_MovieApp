@@ -1,5 +1,6 @@
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import poster from "../assets/poster.png";
 
 function SingleCard({ movie }) {
   const url = "https://image.tmdb.org/t/p/original";
@@ -15,14 +16,26 @@ function SingleCard({ movie }) {
       <div className="card-container">
         <div className="image">
           <img
-            src={url + movie.poster_path || url + movie.backdrop_path}
+            src={
+              movie.poster_path
+                ? url + movie.poster_path
+                : movie.backdrop_path
+                ? url + movie.backdrop_path
+                : movie.known_for?.[0]?.poster_path
+                ? url + movie.known_for[0].poster_path
+                : poster
+            }
             alt="movie image"
           />
           <div className="overlay">
             <div className="rating">
               <CircularProgressbar
                 value={movie.vote_average ? movie.vote_average * 10 : 5 * 10}
-                text={movie.vote_average ? movie.vote_average.toFixed(1) : 5.50.toFixed(1)}
+                text={
+                  movie.vote_average
+                    ? movie.vote_average.toFixed(1)
+                    : (5.5).toFixed(1)
+                }
                 strokeWidth={10}
                 styles={buildStyles({
                   pathColor: `${
@@ -53,7 +66,15 @@ function SingleCard({ movie }) {
               movie.name ||
               movie.original_name}
           </p>
-          <p>{movie.release_date ? dateFormat(movie.release_date) : dateFormat(movie.first_air_date)}</p>
+          <p>
+            {movie.release_date
+              ? dateFormat(movie.release_date)
+              : movie.first_air_date
+              ? dateFormat(movie.first_air_date)
+              : movie.known_for?.[0]?.release_date
+              ? dateFormat(movie.known_for[0].release_date)
+              : "unKnown"}
+          </p>
         </div>
       </div>
     </>
