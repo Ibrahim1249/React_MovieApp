@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 function Hero() {
+
   const [searchTerm , setSearchTerm] = useState("");
   const navigate = useNavigate();
   function handleClick(e){
     e.preventDefault();
       navigate("/search/" + searchTerm)
   }
-
-  return (
-    <>
+  
+   return (
+     <>
       <div className="hero-container">
+    
         <div className="hero">
           <h1>Welcome</h1>
           <p>

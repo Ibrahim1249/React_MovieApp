@@ -1,6 +1,9 @@
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import poster from "../assets/poster.png";
+import { Grow , Blur } from 'transitions-kit'
+import { AsyncImage } from 'loadable-image'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 function SingleCard({ movie , movieList , tvList , isVisible}) {
   const url = "https://image.tmdb.org/t/p/original";
@@ -10,19 +13,23 @@ function SingleCard({ movie , movieList , tvList , isVisible}) {
     const date = new Date(dateString);
     return date.toLocaleDateString("en-US", options);
   }
+
+  console.log(movieList , tvList , isVisible)
  
-  const genreData = isVisible ? movie.genre_ids.map (genre =>{
+  const genreData = isVisible ? movie?.genre_ids?.map (genre =>{
      const list = movieList.find (movies_id => genre === movies_id.id);
      return list ? list.name : "UnKnown Genre"
-  }) : movie.genre_ids.map (genre =>{
+  }) : movie?.genre_ids?.map (genre =>{
     const list = tvList.find (tv_id => genre === tv_id.id);
     return list ? list.name : "UnKnown Genre"
   })
+  // console.log(genreData)
   return (
     <>
       <div className="card-container">
         <div className="image">
-          <img
+   
+          {/* <img
             src={
               movie.poster_path
                 ? url + movie.poster_path
@@ -34,7 +41,22 @@ function SingleCard({ movie , movieList , tvList , isVisible}) {
             }
             alt="movie image"
             loading="lazy"
-          />
+          /> */}
+          <AsyncImage src={ movie.poster_path
+                ? url + movie.poster_path
+                : movie.backdrop_path
+                ? url + movie.backdrop_path
+                : movie.known_for?.[0]?.poster_path
+                ? url + movie.known_for[0].poster_path
+                : poster}
+                loader={<div style={{ background: '#888' }}/>}
+                Transition={Blur}
+                style={{ width: "100%",aspectRatio: 2 / 3 }}
+                 loading="lazy"
+                />
+
+         
+     
           <div className="overlay">
             <div className="rating">
               <CircularProgressbar
@@ -52,20 +74,18 @@ function SingleCard({ movie , movieList , tvList , isVisible}) {
                       : "rgb(255, 165, 0)"
                   }`,
                   textColor: "rgb(0, 128, 0)",
-                  // trailColor: '#d6d6d6',
-                  // backgroundColor: '#000000',
                   textSize: "35px",
-                  // pathTransitionDuration: 2,
                 })}
               />
             </div>
 
             <div className="genre">
-               {genreData.map((data,index)=>{
+               {genreData && genreData.map((data,index)=>{
                  return <p key={index}> {data}</p>
                })}
             </div>
           </div>
+
         </div>
 
         <div className="movie-info">

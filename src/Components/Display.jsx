@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import SingleCard from "./SingleCard";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -33,7 +33,8 @@ function Display({ heading, option1, option2, data1, data2 , movieList , tvList 
         <div className="display-movies">
             {isVisible
               ? option1.map((movie, index) => {
-                  return <SingleCard key={index} movie={movie} movieList={movieList} tvList={tvList} isVisible={isVisible}/>;
+                  return  <SingleCard key={index} movie={movie} movieList={movieList} tvList={tvList} isVisible={isVisible}/>;
+           
                 })
               : option2.map((movie, index) => {
                   return <SingleCard key={index} movie={movie} movieList={movieList} tvList={tvList} isVisible={isVisible} />;

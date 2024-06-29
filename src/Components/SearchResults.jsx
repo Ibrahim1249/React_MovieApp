@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom"
-import {fetchSearchTerm } from "../Slice/slice"
+import {fetchSearchTerm , fetchGenre} from "../Slice/slice"
 import SingleCard from "./SingleCard";
 
 
@@ -15,7 +15,8 @@ function SearchResults() {
         dispatch(fetchSearchTerm(searchTerm))
     },[dispatch,searchTerm])
 
-    const {searchResults} = useSelector((state)=>{return state.movieReducer})
+
+    const {searchResults , moviesList , tvList  } = useSelector((state)=>{return state.movieReducer})
 
 
   return (
@@ -24,7 +25,7 @@ function SearchResults() {
          <h1>{`Search Results for '${searchTerm}'`}</h1>
          <div className="display-movies">
              {searchResults && searchResults.map((movie,index)=>{
-                 return <SingleCard movie={movie} key={index}/>
+                 return  <SingleCard key={index} movie={movie} movieList={moviesList} tvList={tvList} isVisible={true}/>
              })}
          </div>
       </div>

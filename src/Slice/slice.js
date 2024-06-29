@@ -63,6 +63,7 @@ export const fetchGenre = createAsyncThunk("fetchGenre",async()=>{
    }
 })
 
+
 export const fetchMovies = createAsyncThunk("fetchMovies",async(moviePage)=>{
    try{
      const result = await axios.get(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=true&language=en-US&page=${moviePage}&sort_by=popularity.desc&api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
