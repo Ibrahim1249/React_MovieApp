@@ -33,6 +33,7 @@ function SingleCard({ movie , movieList , tvList , isVisible}) {
                 : poster
             }
             alt="movie image"
+            loading="lazy"
           />
           <div className="overlay">
             <div className="rating">

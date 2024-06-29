@@ -6,12 +6,21 @@ import SingleCard from "./SingleCard";
 function Movies() {
 
    const dispatch = useDispatch();
-   const {movies , moviesList , tvList} = useSelector((state)=>{return state.movieReducer})
+   const {movies , moviesList , tvList , moviePage} = useSelector((state)=>{return state.movieReducer})
 
    useEffect(()=>{
-     dispatch(fetchMovies());
+     dispatch(fetchMovies(1));
    },[dispatch]);
-
+ 
+    useEffect(()=>{
+       const handleScroll = ()=>{
+        if (  window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 100) {
+            dispatch(fetchMovies(moviePage));
+        }
+       }
+       window.addEventListener('scroll', handleScroll);
+       return () => window.removeEventListener('scroll', handleScroll);
+    },[dispatch,moviePage])
 
 
   return (

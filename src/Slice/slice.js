@@ -63,18 +63,18 @@ export const fetchGenre = createAsyncThunk("fetchGenre",async()=>{
    }
 })
 
-export const fetchMovies = createAsyncThunk("fetchMovies",async()=>{
+export const fetchMovies = createAsyncThunk("fetchMovies",async(moviePage)=>{
    try{
-     const result = await axios.get("https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=true&language=en-US&page=1&sort_by=popularity.desc&api_key="+import.meta.env.VITE_TMDB_API_KEY);
+     const result = await axios.get(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=true&language=en-US&page=${moviePage}&sort_by=popularity.desc&api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
      return result.data.results
    }catch(err){
     return err;
    }
 })
 
-export const fetchTvShows = createAsyncThunk("fetchTvShows",async()=>{
+export const fetchTvShows = createAsyncThunk("fetchTvShows",async(tvPage)=>{
   try{
-    const result = await axios.get("https://api.themoviedb.org/3/discover/tv?include_adult=true&include_null_first_air_dates=true&language=en-US&page=1&sort_by=popularity.desc&api_key="+import.meta.env.VITE_TMDB_API_KEY);
+    const result = await axios.get(`https://api.themoviedb.org/3/discover/tv?include_adult=true&include_null_first_air_dates=true&language=en-US&page=${tvPage}&sort_by=popularity.desc&api_key=${import.meta.env.VITE_TMDB_API_KEY}`);
     return result.data.results
   }catch(err){
    return err;
@@ -105,7 +105,10 @@ export const fetchSearchTerm = createAsyncThunk("fetchSearchTerm",async(searchTe
         movies:[],
         tvShows:[],
         tvList:[],
+        moviePage:1,
+        tvPage:1,
         status:"idle",
+
         error:null
     },
     reducers:{},
@@ -169,7 +172,8 @@ export const fetchSearchTerm = createAsyncThunk("fetchSearchTerm",async(searchTe
           state.status = "Loading...";
         })
         .addCase(fetchMovies.fulfilled, (state, action) => {
-          state.movies = action.payload;
+          state.movies = [...state.movies, ...action.payload];
+          state.moviePage += 1;
         })
         .addCase(fetchMovies.rejected, (state, action) => {
           state.status = "There is an error";
@@ -179,7 +183,8 @@ export const fetchSearchTerm = createAsyncThunk("fetchSearchTerm",async(searchTe
           state.status = "Loading...";
         })
         .addCase(fetchTvShows.fulfilled, (state, action) => {
-          state.tvShows = action.payload;
+          state.tvShows = [...state.tvShows, ...action.payload];
+          state.tvPage += 1;
         })
         .addCase(fetchTvShows.rejected, (state, action) => {
           state.status = "There is an error";
