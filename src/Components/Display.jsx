@@ -3,27 +3,11 @@ import SingleCard from "./SingleCard";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-function Display({ heading, option1, option2, data1, data2 }) {
+function Display({ heading, option1, option2, data1, data2 , movieList , tvList }) {
   const [isVisible, setIsVisible] = useState(true);
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
+
+ 
+
 
   return (
     <>
@@ -49,10 +33,10 @@ function Display({ heading, option1, option2, data1, data2 }) {
         <div className="display-movies">
             {isVisible
               ? option1.map((movie, index) => {
-                  return <SingleCard key={index} movie={movie} />;
+                  return <SingleCard key={index} movie={movie} movieList={movieList} tvList={tvList} isVisible={isVisible}/>;
                 })
               : option2.map((movie, index) => {
-                  return <SingleCard key={index} movie={movie} />;
+                  return <SingleCard key={index} movie={movie} movieList={movieList} tvList={tvList} isVisible={isVisible} />;
                 })}
         </div>
       </div>

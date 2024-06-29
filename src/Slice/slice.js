@@ -48,6 +48,22 @@ export const fetchTopRated = createAsyncThunk("fetchTopRated",async()=>{
   }
 })
 
+export const fetchGenre = createAsyncThunk("fetchGenre",async()=>{
+   try{
+      const [moviesList , tvList] = await Promise.all([
+         axios.get("https://api.themoviedb.org/3/genre/movie/list?language=en&api_key="+import.meta.env.VITE_TMDB_API_KEY),
+         axios.get("https://api.themoviedb.org/3/genre/tv/list?language=en&api_key="+import.meta.env.VITE_TMDB_API_KEY)
+      ])
+       return{
+         moviesList:moviesList.data.genres,
+         tvList : tvList.data.genres
+       }
+   }catch(err){
+    return err;
+   }
+})
+
+
 export const fetchSearchTerm = createAsyncThunk("fetchSearchTerm",async(searchTerm)=>{
     try{
        const result = await axios.get(`https://api.themoviedb.org/3/search/multi?query=${searchTerm}&include_adult=false&language=en-US&api_key=${import.meta.env.VITE_TMDB_API_KEY}`)
@@ -66,6 +82,8 @@ export const fetchSearchTerm = createAsyncThunk("fetchSearchTerm",async(searchTe
         topRatedMovies:[],
         topRatedTVShows:[],
         searchResults:[],
+        moviesList:[],
+        tvList:[],
         status:"idle",
         error:null
     },
@@ -112,6 +130,17 @@ export const fetchSearchTerm = createAsyncThunk("fetchSearchTerm",async(searchTe
           state.searchResults = action.payload;
         })
         .addCase(fetchSearchTerm.rejected, (state, action) => {
+          state.status = "There is an error";
+          state.error = action.payload;
+        })
+        .addCase(fetchGenre.pending, (state, action) => {
+          state.status = "Loading...";
+        })
+        .addCase(fetchGenre.fulfilled, (state, action) => {
+          state.moviesList = action.payload.moviesList;
+          state.tvList = action.payload.tvList;
+        })
+        .addCase(fetchGenre.rejected, (state, action) => {
           state.status = "There is an error";
           state.error = action.payload;
         })

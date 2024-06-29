@@ -2,7 +2,7 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import poster from "../assets/poster.png";
 
-function SingleCard({ movie }) {
+function SingleCard({ movie , movieList , tvList , isVisible}) {
   const url = "https://image.tmdb.org/t/p/original";
 
   function dateFormat(dateString) {
@@ -10,7 +10,14 @@ function SingleCard({ movie }) {
     const date = new Date(dateString);
     return date.toLocaleDateString("en-US", options);
   }
-
+ 
+  const genreData = isVisible ? movie.genre_ids.map (genre =>{
+     const list = movieList.find (movies_id => genre === movies_id.id);
+     return list ? list.name : "UnKnown Genre"
+  }) : movie.genre_ids.map (genre =>{
+    const list = tvList.find (tv_id => genre === tv_id.id);
+    return list ? list.name : "UnKnown Genre"
+  })
   return (
     <>
       <div className="card-container">
@@ -53,8 +60,9 @@ function SingleCard({ movie }) {
             </div>
 
             <div className="genre">
-              <p>Action</p>
-              <p>Adventure</p>
+               {genreData.map((data,index)=>{
+                 return <p key={index}> {data}</p>
+               })}
             </div>
           </div>
         </div>

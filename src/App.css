@@ -175,6 +175,7 @@ a{
   top: 0;
   background-color: #36333317;
   transition: all 0.3s;
+
   /* z-index: 4; */
 }
 .image .overlay:hover{
@@ -191,12 +192,13 @@ a{
 }
 .genre{
   position: absolute;
-  right: 5%;
-  bottom: 4%;
+  right: 3%;
+  bottom: 8%;
   display: flex;
-  gap: 0.5rem;
-  font-size: 14px;
-
+  gap: 0.25rem;
+  font-size: 13px;
+  flex-wrap: wrap;
+justify-content: flex-end;
 }
 .genre p{
   background-color: #DA2F68;
