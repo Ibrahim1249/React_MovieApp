@@ -16,7 +16,7 @@ function SearchResults() {
     },[dispatch,searchTerm])
 
     const {searchResults} = useSelector((state)=>{return state.movieReducer})
-    console.log(searchResults)
+
 
   return (
     <>

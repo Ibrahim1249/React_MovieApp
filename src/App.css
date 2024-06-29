@@ -94,7 +94,7 @@ a{
   background: linear-gradient(98.37deg, #f89e00 .99%, #da2f68 100%);
   color: #fff;
 }
-.display-container , .searchResult-container{
+.display-container , .searchResult-container , .discover-movies-container , .discover-tvShows-container{
   padding: 2rem 12%;
   background-color: #04152D;
   color: white;
@@ -226,4 +226,10 @@ justify-content: flex-end;
 .searchResult-container h1{
   margin-bottom: 2rem;
   font-family: Reddit Mono , sans-serif;
+}
+
+.heading h3{
+  font-weight: 400;
+  font-size: 26px;
+  margin-bottom: 2rem;
 }
