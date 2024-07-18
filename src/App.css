@@ -336,8 +336,9 @@ justify-content: flex-end;
 
     
 .singleMoviePage-container{
-  padding: 7% 0px;
-  position: relative;
+  /* padding: 7% 0px; */
+ height: 90vh;
+ padding-top: 8%;
 
 }
 .singleMoviePage{
@@ -443,6 +444,9 @@ font-weight: 400;
 
  .singleMoviePage .optional-info .pa {
   color: white;
+}
+.single-credits-container{
+  /* position: relative; */
 }
 
 @media screen and (max-width:1500px){

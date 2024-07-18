@@ -1,7 +1,8 @@
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import Credits from "./Credits";
 
-function SinglePageMovie({ singleMovie }) {
+function SinglePageMovie({ singleMovie , singleMovieCredits}) {
   const url = "https://image.tmdb.org/t/p/original";
   function formateDuration(){
     const totalMinutes = singleMovie?.runtime;
@@ -113,6 +114,9 @@ function SinglePageMovie({ singleMovie }) {
           </div>
         </div>
       </div>
+      <div className="single-credits-container">
+         {singleMovieCredits && <Credits heading={"Top Cast"} option1={singleMovieCredits}/>}
+         </div>
     </>
   );
 }
