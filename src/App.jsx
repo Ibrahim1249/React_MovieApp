@@ -6,6 +6,7 @@ import Home from "./Components/Home"
 import Movies from "./Components/Movies";
 import Shows from "./Components/TvShows"
 import SearchResults from "./Components/SearchResults";
+import SinglePage from "./Components/SinglePage";
 
 
 
@@ -19,6 +20,7 @@ function App() {
            <Route path="/movies" element={<Movies/>}></Route>
            <Route path="/shows" element={<Shows/>}></Route>
            <Route path="/search/:searchTerm" element={<SearchResults />}></Route>
+           <Route path="/single-page" element={<SinglePage/>}></Route>
         </Routes>
       </BrowserRouter>
      </>

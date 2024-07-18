@@ -5,9 +5,14 @@
   padding: 0;
   box-sizing: border-box;
 }
+body{
+  background-color: #031022;
+}
 
 nav{
-  background-color: #031022;
+  /* background-color: #031022; */
+  /* background-color: #031022a8; */
+    backdrop-filter: blur(5px);
   padding: 1rem 10%;
   display: flex;
   align-items: center;
@@ -44,7 +49,7 @@ a{
   justify-content: center;
   align-items: center;
  padding-top: 10%;
- padding-bottom: 8%;
+ padding-bottom: 13%;
   background-color: #04152D;
 }
 
@@ -53,6 +58,7 @@ a{
   padding: 1rem;
   width: 50%;
   text-align: center;
+  z-index: 2;
 }
 .hero h1{
   font-size: 70px;
@@ -66,6 +72,37 @@ a{
    font-family: Raleway , sans-serif;
    margin-bottom: 1.5rem;
 }
+
+.hero-bg-img{
+  width: 100%;
+  height: 80vh;
+  position: absolute;
+
+  top: 0;
+}
+.hero-bg-img .hero-bg{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+
+
+}
+.hero-bg-img_1{
+  position: absolute;
+  inset: 0;
+  background-color: black;
+  opacity: 0.7;
+}
+.hero-bg-img_2{
+  width: 100%;
+  height: 250px;
+  background: linear-gradient(180deg, #04152d00, #04152d 79.17%);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
 
 .search{
   width: 80%;
@@ -141,18 +178,25 @@ a{
 }
 
 .display-movies{
-  display: flex; 
+
   /* gap: 0.5rem; */
+  display: flex; 
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
 .card-container{
-  width: calc(20% - 12px);
+  /* width: calc(20% - 12px); */
   padding: 0.25rem;
   cursor: pointer;
   position: relative;
+  margin-left: 2px;
+  margin-right: 2px;
   margin-bottom: 1rem;
+
+}
+.card-width{
+  width: calc(20% - 12px);
 }
 .image{
   width: 100%;
@@ -242,3 +286,33 @@ justify-content: flex-end;
   margin-bottom: 1rem;
    background-color: #f3f0f070;
 }
+
+/* .skeleton{
+  width: calc(20% - 12px);
+} */
+
+.skeleton{
+  padding: 6% 0%;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  gap: 4rem;
+}
+.skeleton-line-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: fit-content;
+  /* gap: 2rem; */
+  height: 400px;
+
+}
+.skeleton-line{
+  width: 600px;
+  height: 40px;
+  margin-bottom: 1rem;
+}
+
+
+    
+  

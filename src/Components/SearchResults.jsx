@@ -25,7 +25,7 @@ function SearchResults() {
          <h1>{`Search Results for '${searchTerm}'`}</h1>
          <div className="display-movies">
              {searchResults && searchResults.map((movie,index)=>{
-                 return  <SingleCard key={index} movie={movie} movieList={moviesList} tvList={tvList} isVisible={true}/>
+                 return  <SingleCard key={index} movie={movie} movieList={moviesList} tvList={tvList} isVisible={true} isProperty={true}/>
              })}
          </div>
       </div>

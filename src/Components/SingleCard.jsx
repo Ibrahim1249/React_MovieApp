@@ -1,11 +1,12 @@
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import poster from "../assets/poster.png";
-import { Grow , Blur } from 'transitions-kit'
-import { AsyncImage } from 'loadable-image'
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+// import { Grow , Blur } from 'transitions-kit'
+// import { AsyncImage } from 'loadable-image'
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
-function SingleCard({ movie , movieList , tvList , isVisible}) {
+function SingleCard({ movie , movieList , tvList , isVisible , isProperty}) {
   const url = "https://image.tmdb.org/t/p/original";
 
   function dateFormat(dateString) {
@@ -14,8 +15,7 @@ function SingleCard({ movie , movieList , tvList , isVisible}) {
     return date.toLocaleDateString("en-US", options);
   }
 
-  console.log(movieList , tvList , isVisible)
- 
+
   const genreData = isVisible ? movie?.genre_ids?.map (genre =>{
      const list = movieList.find (movies_id => genre === movies_id.id);
      return list ? list.name : "UnKnown Genre"
@@ -26,7 +26,7 @@ function SingleCard({ movie , movieList , tvList , isVisible}) {
   // console.log(genreData)
   return (
     <>
-      <div className="card-container">
+      <div className={isProperty ? "card-container card-width" : "card-container"}>
         <div className="image">
    
           {/* <img
@@ -42,7 +42,7 @@ function SingleCard({ movie , movieList , tvList , isVisible}) {
             alt="movie image"
             loading="lazy"
           /> */}
-          <AsyncImage src={ movie.poster_path
+          {/* <AsyncImage src={ movie.poster_path
                 ? url + movie.poster_path
                 : movie.backdrop_path
                 ? url + movie.backdrop_path
@@ -53,9 +53,16 @@ function SingleCard({ movie , movieList , tvList , isVisible}) {
                 Transition={Blur}
                 style={{ width: "100%",aspectRatio: 2 / 3 }}
                  loading="lazy"
-                />
-
-         
+                /> */}
+           
+           <LazyLoadImage className={"className" || ""} alt="" effect="blur" src={movie.poster_path
+                ? url + movie.poster_path
+                : movie.backdrop_path
+                ? url + movie.backdrop_path
+                : movie.known_for?.[0]?.poster_path
+                ? url + movie.known_for[0].poster_path
+                : poster}
+                loading="lazy" />
      
           <div className="overlay">
             <div className="rating">

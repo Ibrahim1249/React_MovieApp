@@ -108,7 +108,7 @@ export const fetchSearchTerm = createAsyncThunk("fetchSearchTerm",async(searchTe
         tvList:[],
         moviePage:1,
         tvPage:1,
-        status:"idle",
+        loading:false,
 
         error:null
     },
@@ -116,79 +116,86 @@ export const fetchSearchTerm = createAsyncThunk("fetchSearchTerm",async(searchTe
     extraReducers: (builder) => {
       builder
         .addCase(fetchTrending.pending, (state, action) => {
-          state.status = "Loading...";
+          state.loading = true;
         })
         .addCase(fetchTrending.fulfilled, (state, action) => {
           state.trendingMovieByDay = action.payload.trendingMovieByDay;
           state.trendingMovieByWeek = action.payload.trendingMovieByWeek;
+          state.loading = false;
         })
         .addCase(fetchTrending.rejected, (state, action) => {
-          state.status = "There is an error";
           state.error = action.payload;
+          state.loading = false;
         })
         .addCase(fetchPopular.pending, (state, action) => {
-          state.status = "Loading...";
+          state.loading = true;
         })
         .addCase(fetchPopular.fulfilled, (state, action) => {
           state.popularMovies = action.payload.popularMovies;
           state.popularTVShows = action.payload.popularTVShows;
+          state.loading = false;
         })
         .addCase(fetchPopular.rejected, (state, action) => {
-          state.status = "There is an error";
+          state.loading = true;
           state.error = action.payload;
         })
         .addCase(fetchTopRated.pending, (state, action) => {
-          state.status = "Loading...";
+          state.loading = true;
         })
         .addCase(fetchTopRated.fulfilled, (state, action) => {
           state.topRatedMovies = action.payload.topRatedMovies;
           state.topRatedTVShows = action.payload.topRatedTVShows;
+          state.loading = false;
         })
         .addCase(fetchTopRated.rejected, (state, action) => {
-          state.status = "There is an error";
+          state.loading = false;
           state.error = action.payload;
         })
         .addCase(fetchSearchTerm.pending, (state, action) => {
-          state.status = "Loading...";
+          state.loading = true;
         })
         .addCase(fetchSearchTerm.fulfilled, (state, action) => {
           state.searchResults = action.payload;
+          state.loading = false;
         })
         .addCase(fetchSearchTerm.rejected, (state, action) => {
-          state.status = "There is an error";
+          state.loading = false;
           state.error = action.payload;
         })
         .addCase(fetchGenre.pending, (state, action) => {
-          state.status = "Loading...";
+          state.loading = true;
         })
         .addCase(fetchGenre.fulfilled, (state, action) => {
           state.moviesList = action.payload.moviesList;
           state.tvList = action.payload.tvList;
+          state.loading = false;
         })
         .addCase(fetchGenre.rejected, (state, action) => {
-          state.status = "There is an error";
+          state.loading = false;
           state.error = action.payload;
         })
         .addCase(fetchMovies.pending, (state, action) => {
-          state.status = "Loading...";
+          state.loading = true;
         })
         .addCase(fetchMovies.fulfilled, (state, action) => {
           state.movies = [...state.movies, ...action.payload];
           state.moviePage += 1;
+          state.loading = false;
         })
         .addCase(fetchMovies.rejected, (state, action) => {
-          state.status = "There is an error";
+          state.loading = false;
           state.error = action.payload;
         })
         .addCase(fetchTvShows.pending, (state, action) => {
-          state.status = "Loading...";
+          state.loading = true;
         })
         .addCase(fetchTvShows.fulfilled, (state, action) => {
           state.tvShows = [...state.tvShows, ...action.payload];
           state.tvPage += 1;
+          state.loading = false;
         })
         .addCase(fetchTvShows.rejected, (state, action) => {
-          state.status = "There is an error";
+          state.loading = false;
           state.error = action.payload;
         })
     },

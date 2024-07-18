@@ -31,7 +31,7 @@ function Movies() {
         </div>
         <div className="display-movies">
             {movies.map((movie,index)=>{
-               return <SingleCard key={index} movie={movie} movieList={moviesList} tvList={tvList} isVisible={true}/>
+               return <SingleCard key={index} movie={movie} movieList={moviesList} tvList={tvList} isVisible={true} isProperty={true}/>
             })}
         </div>
       </div>
