@@ -5,6 +5,7 @@ import poster from "../assets/poster.png";
 // import { AsyncImage } from 'loadable-image'
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { Link } from "react-router-dom";
 
 function SingleCard({ movie , movieList , tvList , isVisible , isProperty}) {
   const url = "https://image.tmdb.org/t/p/original";
@@ -27,6 +28,7 @@ function SingleCard({ movie , movieList , tvList , isVisible , isProperty}) {
   return (
     <>
       <div className={isProperty ? "card-container card-width" : "card-container"}>
+        <Link to={`/single-page/${movie.id}`}>
         <div className="image">
    
           {/* <img
@@ -63,7 +65,6 @@ function SingleCard({ movie , movieList , tvList , isVisible , isProperty}) {
                 ? url + movie.known_for[0].poster_path
                 : poster}
                 loading="lazy" />
-     
           <div className="overlay">
             <div className="rating">
               <CircularProgressbar
@@ -94,6 +95,7 @@ function SingleCard({ movie , movieList , tvList , isVisible , isProperty}) {
           </div>
 
         </div>
+        </Link>
 
         <div className="movie-info">
           <p>

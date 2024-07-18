@@ -20,7 +20,7 @@ function App() {
            <Route path="/movies" element={<Movies/>}></Route>
            <Route path="/shows" element={<Shows/>}></Route>
            <Route path="/search/:searchTerm" element={<SearchResults />}></Route>
-           <Route path="/single-page" element={<SinglePage/>}></Route>
+           <Route path="/single-page/:id" element={<SinglePage/>}></Route>
         </Routes>
       </BrowserRouter>
      </>

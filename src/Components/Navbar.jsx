@@ -15,9 +15,6 @@ function Navbar() {
           <li>
             <Link to="/shows">Tv Shows</Link>
           </li>
-          <li>
-            <Link to="/single-page">search</Link>
-          </li>
         </ul>
       </nav>
     </>

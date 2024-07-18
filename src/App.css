@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Reddit+Mono:wght@200..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 *{
   margin: 0;
   padding: 0;
@@ -84,7 +84,7 @@ a{
   width: 100%;
   height: 100%;
   object-fit: cover;
-
+  object-position: center;
 
 
 }
@@ -103,6 +103,25 @@ a{
   left: 0;
 }
 
+.singleMoviePage-img_1{
+  /* background-color: #1B2A3E; */
+  background-color: black;
+  opacity: 0.7;
+  width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+.singleMoviePage-img_2{
+  width: 100%;
+  height: 250px;
+  background: linear-gradient(180deg, #04152d00, #04152d 60.17%);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
 
 .search{
   width: 80%;
@@ -132,7 +151,7 @@ a{
   color: #fff;
 }
 .display-container , .searchResult-container , .discover-movies-container , .discover-tvShows-container{
-  padding: 2rem 12%;
+  padding: 2rem 2%;
   background-color: #04152D;
   color: white;
   font-family: Outfit , sans-serif;
@@ -315,4 +334,112 @@ justify-content: flex-end;
 
 
     
-  
+.singleMoviePage-container{
+  padding: 7% 0px;
+  position: relative;
+
+}
+.singleMoviePage{
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  position: absolute;
+  width: 100%;
+  padding: 0px 8rem;
+  /* border: 2px solid red; */
+}
+.left{
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 2px solid red; */
+}
+.singleMoviePage .single-image{
+  width: calc(80% - 12px);
+}
+.singleMoviePage .single-image img{
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+ position: relative;
+}
+.singleMoviePage .single-description{
+   width: 45%;
+   /* border: 2px solid red; */
+   font-family: Inter , sans-serif;
+   padding: 0.5rem;
+   position: relative;
+
+}
+.single-description .heading{
+  margin-bottom: 1rem;
+}
+.single-description h2{
+  color: white;
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 0.15rem;
+}
+.singleMoviePage .single-description p{
+  font-style: italic;
+  color: #9ea2a8;
+  font-size: 18px;
+  font-weight: 600;
+
+}
+
+.single-genre{
+ 
+  display: flex;
+  gap: 0.45rem;
+  font-size: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.singleMoviePage .single-genre p{
+  background-color: #DA2F68;
+  padding: 0.35rem;
+  border-radius: 5px;
+color: white;
+font-weight: 400;
+
+}
+.single-rating{
+  width: 75px;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 0.15rem;
+}
+.singleMoviePage .overview{
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+
+}
+.singleMoviePage .overview h3{
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+.singleMoviePage .overview p{
+  color: white;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 24px;
+}
+.optional-info{
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+}
+.optional-info p span:first-of-type{
+  color: white;
+}
+.singleMoviePage hr{
+ border-color:#ababadcb;
+ margin-bottom: 0.5rem;
+}
+
+ .singleMoviePage .optional-info .pa {
+  color: white;
+}
