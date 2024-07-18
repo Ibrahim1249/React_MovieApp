@@ -21,7 +21,7 @@ function SinglePageMovie({ singleMovie }) {
   return (
     <>
       <div className="singleMoviePage-container">
-        <div className="hero-bg-img" style={{ height: "92vh" }}>
+        <div className="hero-bg-img" style={{ height: "100vh" }}>
           <img
             src={url + singleMovie?.backdrop_path}
             alt=""
@@ -46,12 +46,13 @@ function SinglePageMovie({ singleMovie }) {
                   singleMovie?.original_title ||
                   singleMovie?.name ||
                   singleMovie?.original_name}
-                  <span>{` - ${singleMovie?.release_date.split("-")[0]}`}</span>
+                  <span>{` - ${singleMovie?.release_date?.split("-")[0]}`}</span>
               </h2>
               <p>{singleMovie?.tagline}</p>
             </div>
+
             <div className="single-genre">
-               {singleMovie?.genres.map((data,index)=>{
+               {singleMovie?.genres?.map((data,index)=>{
                  return <p key={index}> {data.name}</p>
                })}
             </div>
@@ -91,7 +92,7 @@ function SinglePageMovie({ singleMovie }) {
 
              <div className="optional-info">
                 <p><span>Available in : </span> 
-                {singleMovie?.spoken_languages.map((data,index)=>{
+                {singleMovie?.spoken_languages?.map((data,index)=>{
                  return <span key={index}> {`${data.english_name} ,`}</span>
                })}
                 
@@ -102,7 +103,7 @@ function SinglePageMovie({ singleMovie }) {
 
              <div className="optional-info">
                 <p><span>Production : </span> 
-                {singleMovie?.production_companies.map((data,index)=>{
+                {singleMovie?.production_companies?.map((data,index)=>{
                  return <span key={index}> {`${data.name} `}</span>
                })}
                 </p>

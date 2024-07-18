@@ -137,6 +137,7 @@ a{
   padding-right: 2rem;
   font-size: 18px;
   outline: none;
+  cursor: pointer;
 }
 .search input{
   width: 80%;
@@ -151,7 +152,7 @@ a{
   color: #fff;
 }
 .display-container , .searchResult-container , .discover-movies-container , .discover-tvShows-container{
-  padding: 2rem 2%;
+  padding: 2rem 12%;
   background-color: #04152D;
   color: white;
   font-family: Outfit , sans-serif;
@@ -442,4 +443,156 @@ font-weight: 400;
 
  .singleMoviePage .optional-info .pa {
   color: white;
+}
+
+@media screen and (max-width:1500px){
+  .display-container , .searchResult-container , .discover-movies-container , .discover-tvShows-container{
+    padding: 2rem 8%;
+  }
+}
+@media screen and (max-width:1350px){
+  .hero{
+    width: 70%;
+  }
+  .singleMoviePage {
+    padding: 0rem 4rem;
+    gap: 2rem;
+  }
+  .left{
+    width: 40%;
+  }
+  .singleMoviePage .single-image{
+    width: calc(90% - 12px);
+  }
+}
+@media screen and (max-width:1200px){
+  .display-container , .searchResult-container , .discover-movies-container , .discover-tvShows-container{
+    padding: 2rem 4%;
+  }
+}
+@media screen and (max-width:1050px){
+  .display-container , .searchResult-container , .discover-movies-container , .discover-tvShows-container{
+    padding: 2rem 2rem;
+  }
+  .genre{
+    right: 1%;
+    bottom: 15%;
+  }
+  .singleMoviePage {
+    padding: 0rem 1.5rem;
+    gap: 1.5rem;
+  }
+  .left{
+    width: 45%;
+  }
+  .singleMoviePage .single-image{
+    width: 100%;
+  }
+  .singleMoviePage .single-description {
+    width: 50%;
+  }
+}
+@media screen and (max-width:900px){
+
+  .card-width{
+    width: calc(27% - 12px);
+  }
+  .genre{
+    bottom: 10%;
+  }
+  .hero{
+    width: 85%;
+  }
+  .display-movies{
+    justify-content:center;
+    gap: 2rem;
+  }
+  .singleMoviePage {
+    padding: 0rem 1rem;
+    gap: 1rem;
+  }
+  .left{
+    width: 50%;
+  }
+}
+@media screen and (max-width:700px){
+
+  .card-width{
+    width: calc(45% - 12px);
+  }
+  .genre{
+    bottom: 15%;
+  }
+  .hero{
+    width: 95%;
+  }
+   .hero-bg-img{
+    height: 65vh;
+   }
+   .hero-bg-img_2{
+    height: 100px;
+    bottom: -2px;
+   }
+   .search{
+    width: 95%;
+   }
+  .singleMoviePage{
+    flex-wrap: wrap;
+  }
+  .singleMoviePage {
+    padding: 0rem 2rem;
+    gap: 2rem;
+  }
+  .left{
+    width: 95%;
+  }
+  .singleMoviePage .single-description {
+    width: 100%;
+  }
+}
+@media screen and (max-width:500px){
+
+  .card-width{
+    width: calc(47% - 12px);
+  }
+  .genre{
+    bottom: 20%;
+  }
+  .hero{
+    width: 100%;
+  }
+   .hero-bg-img{
+    height: 60vh;
+   }
+   .hero-bg-img_2{
+    height: 50px;
+    bottom: -2px;
+   }
+   .search{
+    width: 100%;
+   }
+   .search .btn {
+    width: 30%;
+   }
+   .display-container , .searchResult-container , .discover-movies-container , .discover-tvShows-container{
+    padding: 2rem 1.5rem;
+  }
+  nav{
+    padding: 1rem 5%;
+  }
+  .hero h1{
+    font-size: 45px;
+  }
+  .hero p{
+    font-size: 18px;
+  }
+  .singleMoviePage {
+    padding: 0rem 0.5rem;
+    gap: 1rem;
+  }
+  .left{
+    width: 100%;
+  }
+
+
 }
