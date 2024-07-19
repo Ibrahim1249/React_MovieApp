@@ -1,4 +1,4 @@
-import React from 'react'
+import profile from "../assets/profile.png"
 
 function SingleCredits({cast}) {
     const url = "https://image.tmdb.org/t/p/original";
@@ -6,7 +6,11 @@ function SingleCredits({cast}) {
    <>
     <div className="single-credits">
         <div className="image">
-            <img src={url + cast?.profile_path} alt="" />
+            <img src={cast?.profile_path === null ? profile : url + cast?.profile_path} alt="" />
+        </div>
+        <div className="actor-name">
+        <p>{cast?.character?.split("/")[0]}</p>
+        <p>{cast?.name}</p>
         </div>
     </div>
    </>

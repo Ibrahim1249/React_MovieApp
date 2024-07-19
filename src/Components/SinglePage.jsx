@@ -10,6 +10,8 @@ function SinglePage() {
   const {id} = useParams();
   const [singleMovie , setSingleMovie] = useState(null);
   const [singleMovieCredits , setSingleMovieCredits] = useState(null)
+  const [singleSimilarMovie , setSingleSimilarMovie] = useState(null)
+  const [singleRecommendedMovie , setSingleRecommendedMovie] = useState(null)
   const [loading , setLoading] = useState(false);
 
   
@@ -37,12 +39,48 @@ function SinglePage() {
       }
       
       const result = await response.json();
-      console.log(result);
       setSingleMovieCredits(result);
     } catch (err) {
       console.error("Error fetching movie videos:", err.message);
     }
   }  
+
+  const fetchSimilarMovie= async () => {
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1&api_key=${import.meta.env.VITE_TMDB_API_KEY}`
+      );
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const result = await response.json();
+      console.log(result);
+      setSingleSimilarMovie(result.results);
+    } catch (err) {
+      console.error("Error fetching movie videos:", err.message);
+    }
+  }  
+
+  const fetchRecommendedMovie= async () => {
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${id}/recommendations?language=en-US&page=1&api_key=${import.meta.env.VITE_TMDB_API_KEY}`
+      );
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const result = await response.json();
+      console.log(result);
+      setSingleRecommendedMovie(result.results);
+    } catch (err) {
+      console.error("Error fetching movie videos:", err.message);
+    }
+  }  
+
 
   useEffect(()=>{
     fetchSingleMovie()
@@ -52,10 +90,19 @@ function SinglePage() {
    fetchSingleMovieCredits()
   },[id])
 
+  useEffect(()=>{
+    fetchSimilarMovie()
+   },[id])
+
+   useEffect(()=>{
+    fetchRecommendedMovie()
+   },[id])
+
+
   return (
      <> 
 
-      {loading ? <SkeletonLayout /> : <SinglePageMovie singleMovie={singleMovie} singleMovieCredits={singleMovieCredits}/>}
+      {loading ? <SkeletonLayout /> : <SinglePageMovie singleMovie={singleMovie} singleMovieCredits={singleMovieCredits} singleSimilarMovie={singleSimilarMovie} singleRecommendedMovie={singleRecommendedMovie}/>}
 
      </>
   )

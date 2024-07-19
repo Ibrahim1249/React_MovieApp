@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 function Credits({
   heading,
   option1,
+  isPadding
 }) {
 
 
@@ -52,7 +53,7 @@ function Credits({
 
   return (
     <>
-      <div className="display-container">
+      <div className={isPadding ? `display-container first-Credits` : `display-container`}>
         <div className="container">
           <h2>{heading}</h2>
         </div>

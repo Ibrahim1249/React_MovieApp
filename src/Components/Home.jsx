@@ -32,9 +32,9 @@ useEffect(()=>{
   return (
     <>
      <Hero />
-     <Display heading="Trending" data1="Day" data2="Week" option1={trendingMovieByDay} option2={trendingMovieByWeek} movieList={moviesList} tvList={tvList}/>
-     <Display heading="What's Popular" data1="Movies" data2="TVShows" option1={popularMovies} option2={popularTVShows} movieList={moviesList} tvList={tvList}/>
-     <Display heading="Top Rated" data1="Movies" data2="TVShows" option1={topRatedMovies} option2={topRatedTVShows} movieList={moviesList} tvList={tvList}/>
+     <Display heading="Trending" data1="Day" data2="Week" option1={trendingMovieByDay} option2={trendingMovieByWeek} movieList={moviesList} tvList={tvList} isPadding={true}/>
+     <Display heading="What's Popular" data1="Movies" data2="TVShows" option1={popularMovies} option2={popularTVShows} movieList={moviesList} tvList={tvList} isPadding={false}/>
+     <Display heading="Top Rated" data1="Movies" data2="TVShows" option1={topRatedMovies} option2={topRatedTVShows} movieList={moviesList} tvList={tvList} isPadding={false}/>
      
     </>
   )

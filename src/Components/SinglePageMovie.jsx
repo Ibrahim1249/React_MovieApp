@@ -1,8 +1,11 @@
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import Credits from "./Credits";
+import Display from "./Display";
+import { useSelector } from "react-redux";
 
-function SinglePageMovie({ singleMovie , singleMovieCredits}) {
+function SinglePageMovie({ singleMovie , singleMovieCredits , singleSimilarMovie , singleRecommendedMovie }) {
+  const { tvList , moviesList} = useSelector((state)=>{return state.movieReducer})
   const url = "https://image.tmdb.org/t/p/original";
   function formateDuration(){
     const totalMinutes = singleMovie?.runtime;
@@ -115,7 +118,15 @@ function SinglePageMovie({ singleMovie , singleMovieCredits}) {
         </div>
       </div>
       <div className="single-credits-container">
-         {singleMovieCredits && <Credits heading={"Top Cast"} option1={singleMovieCredits}/>}
+         {singleMovieCredits && <Credits heading={"Top Cast"} option1={singleMovieCredits} isPadding={true}/>}
+         </div>
+
+         <div className="single-credits-container">
+         {singleSimilarMovie && <Display heading="Similar" data1="" data2="" option1={singleSimilarMovie} option2="" movieList={moviesList} tvList={tvList} isPadding={false} />}
+         </div>
+
+         <div className="single-credits-container">
+         {singleRecommendedMovie && <Display heading="Recommended" data1="" data2="" option1={singleRecommendedMovie} option2="" movieList={moviesList} tvList={tvList} isPadding={false}/>}
          </div>
     </>
   );

@@ -7,6 +7,7 @@ import Movies from "./Components/Movies";
 import Shows from "./Components/TvShows"
 import SearchResults from "./Components/SearchResults";
 import SinglePage from "./Components/SinglePage";
+import Footer from "./Components/Footer";
 
 
 
@@ -22,6 +23,7 @@ function App() {
            <Route path="/search/:searchTerm" element={<SearchResults />}></Route>
            <Route path="/single-page/:id" element={<SinglePage/>}></Route>
         </Routes>
+        <Footer />
       </BrowserRouter>
      </>
   )

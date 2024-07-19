@@ -13,6 +13,7 @@ function Display({
   data2,
   movieList,
   tvList,
+  isPadding
 }) {
   const [isVisible, setIsVisible] = useState(true);
 
@@ -57,10 +58,10 @@ function Display({
 
   return (
     <>
-      <div className="display-container">
+      <div className={isPadding ? `display-container first-container` : `display-container`}>
         <div className="container">
           <h2>{heading}</h2>
-          <div className="toggle">
+          {data1 !== ""  && data2 !== "" ?  <div className="toggle">
             <p
               className={isVisible ? "active toggle-option" : "toggle-option"}
               onClick={() => setIsVisible(true)}
@@ -73,7 +74,7 @@ function Display({
             >
               {data2}
             </p>
-          </div>
+          </div> : ""}
         </div>
 
         <div className="wrapper-container">
@@ -88,12 +89,12 @@ function Display({
 
           <Slider {...settings}>
             {isVisible
-              ? option1.map((movie, index) => (
+              ? option1?.map((movie, index) => (
                   <div key={index} >
                     <SingleCard movie={movie} movieList={movieList} tvList={tvList} isVisible={isVisible} isProperty={false}/>
                   </div>
                 ))
-              : option2.map((movie, index) => (
+              : option2?.map((movie, index) => (
                   <div key={index}>
                     <SingleCard movie={movie}  movieList={movieList} tvList={tvList} isVisible={isVisible} isProperty={false}/>
                   </div>
