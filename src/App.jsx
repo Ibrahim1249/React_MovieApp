@@ -8,10 +8,14 @@ import Shows from "./Components/TvShows"
 import SearchResults from "./Components/SearchResults";
 import SinglePage from "./Components/SinglePage";
 import Footer from "./Components/Footer";
+import { useLocation } from "react-router-dom";
 
 
 
 function App() {
+ 
+
+  
   return (
      <>
       <BrowserRouter>

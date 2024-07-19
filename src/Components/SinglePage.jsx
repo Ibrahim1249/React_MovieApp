@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import SkeletonLayout from "./SkeletonLayout"
 import SinglePageMovie from "./SinglePageMovie";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 
 
@@ -80,7 +81,12 @@ function SinglePage() {
       console.error("Error fetching movie videos:", err.message);
     }
   }  
+  const location = useLocation();
 
+  // Scroll to the top of the page on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   useEffect(()=>{
     fetchSingleMovie()
@@ -97,6 +103,8 @@ function SinglePage() {
    useEffect(()=>{
     fetchRecommendedMovie()
    },[id])
+
+
 
 
   return (
