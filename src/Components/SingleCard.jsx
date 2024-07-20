@@ -8,6 +8,8 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import { Link } from "react-router-dom";
 
 function SingleCard({ movie , movieList , tvList , isVisible , isProperty}) {
+
+
   const url = "https://image.tmdb.org/t/p/original";
 
   function dateFormat(dateString) {
@@ -28,7 +30,7 @@ function SingleCard({ movie , movieList , tvList , isVisible , isProperty}) {
   return (
     <>
       <div className={isProperty ? "card-container card-width" : "card-container"}>
-        <Link to={`/single-page/${movie.id}`}>
+        <Link to={`/single-page/${movie?.media_type ? movie?.media_type : (isVisible ? "movie" : "tv")}/${movie.id}`}>
         <div className="image">
    
           {/* <img

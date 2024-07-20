@@ -4,6 +4,7 @@ import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useParams } from "react-router-dom";
 
 function Display({
   heading,
@@ -13,7 +14,8 @@ function Display({
   data2,
   movieList,
   tvList,
-  isPadding
+  isPadding,
+  media
 }) {
   const [isVisible, setIsVisible] = useState(true);
 
@@ -91,12 +93,12 @@ function Display({
             {isVisible
               ? option1?.map((movie, index) => (
                   <div key={index} >
-                    <SingleCard movie={movie} movieList={movieList} tvList={tvList} isVisible={isVisible} isProperty={false}/>
+                    <SingleCard movie={movie} movieList={movieList} tvList={tvList}   isVisible={(data1 !== "" && data2 !== "") ? isVisible : media}  isProperty={false}/>
                   </div>
                 ))
               : option2?.map((movie, index) => (
                   <div key={index}>
-                    <SingleCard movie={movie}  movieList={movieList} tvList={tvList} isVisible={isVisible} isProperty={false}/>
+                    <SingleCard movie={movie}  movieList={movieList} tvList={tvList}  isVisible={(data1 !== "" && data2 !== "") ? isVisible : media}  isProperty={false}/>
                   </div>
                 ))}
           </Slider>

@@ -8,31 +8,32 @@ import { useLocation } from "react-router-dom";
 
 
 function SinglePage() {
-  const {id} = useParams();
+  const {id , media} = useParams();
+
   const [singleMovie , setSingleMovie] = useState(null);
   const [singleMovieCredits , setSingleMovieCredits] = useState(null)
   const [singleSimilarMovie , setSingleSimilarMovie] = useState(null)
   const [singleRecommendedMovie , setSingleRecommendedMovie] = useState(null)
   const [loading , setLoading] = useState(false);
 
-  
-  const fetchSingleMovie = async()=>{
+
+  const fetchSingle= async()=>{
      try{
         setLoading(true)
-       const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${import.meta.env.VITE_TMDB_API_KEY}&include_video=true&language=en-US`);
+       const response = await fetch(`https://api.themoviedb.org/3/${media}/${id}?api_key=${import.meta.env.VITE_TMDB_API_KEY}&include_video=true&language=en-US`);
        const result  = await response.json();
        setLoading(false)
-      //  console.log(result)
+
        setSingleMovie(result)
      }catch(err){
         console.log(err)
      }
   }
 
-  const fetchSingleMovieCredits= async () => {
+  const fetchSingleCredits= async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US&api_key=${import.meta.env.VITE_TMDB_API_KEY}`
+        `https://api.themoviedb.org/3/${media}/${id}/credits?language=en-US&api_key=${import.meta.env.VITE_TMDB_API_KEY}`
       );
       
       if (!response.ok) {
@@ -46,10 +47,10 @@ function SinglePage() {
     }
   }  
 
-  const fetchSimilarMovie= async () => {
+  const fetchSimilar= async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1&api_key=${import.meta.env.VITE_TMDB_API_KEY}`
+        `https://api.themoviedb.org/3/${media}/${id}/similar?language=en-US&page=1&api_key=${import.meta.env.VITE_TMDB_API_KEY}`
       );
       
       if (!response.ok) {
@@ -57,17 +58,16 @@ function SinglePage() {
       }
       
       const result = await response.json();
-      console.log(result);
       setSingleSimilarMovie(result.results);
     } catch (err) {
       console.error("Error fetching movie videos:", err.message);
     }
   }  
 
-  const fetchRecommendedMovie= async () => {
+  const fetchRecommended= async () => {
     try {
       const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/recommendations?language=en-US&page=1&api_key=${import.meta.env.VITE_TMDB_API_KEY}`
+        `https://api.themoviedb.org/3/${media}/${id}/recommendations?language=en-US&page=1&api_key=${import.meta.env.VITE_TMDB_API_KEY}`
       );
       
       if (!response.ok) {
@@ -75,7 +75,6 @@ function SinglePage() {
       }
       
       const result = await response.json();
-      console.log(result);
       setSingleRecommendedMovie(result.results);
     } catch (err) {
       console.error("Error fetching movie videos:", err.message);
@@ -89,28 +88,28 @@ function SinglePage() {
   }, [location]);
 
   useEffect(()=>{
-    fetchSingleMovie()
+    fetchSingle()
   },[id])
 
   useEffect(()=>{
-   fetchSingleMovieCredits()
+    fetchSingleCredits()
   },[id])
 
   useEffect(()=>{
-    fetchSimilarMovie()
+    fetchSimilar()
    },[id])
 
    useEffect(()=>{
-    fetchRecommendedMovie()
+    fetchRecommended()
    },[id])
 
 
-
+  //  console.log(singleSimilarMovie , singleRecommendedMovie)
 
   return (
      <> 
 
-      {loading ? <SkeletonLayout /> : <SinglePageMovie singleMovie={singleMovie} singleMovieCredits={singleMovieCredits} singleSimilarMovie={singleSimilarMovie} singleRecommendedMovie={singleRecommendedMovie}/>}
+      {loading ? <SkeletonLayout /> : <SinglePageMovie singleMovie={singleMovie} singleMovieCredits={singleMovieCredits} singleSimilarMovie={singleSimilarMovie} singleRecommendedMovie={singleRecommendedMovie} />}
 
      </>
   )

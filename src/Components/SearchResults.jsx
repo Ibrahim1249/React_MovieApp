@@ -17,7 +17,7 @@ function SearchResults() {
 
 
     const {searchResults , moviesList , tvList  } = useSelector((state)=>{return state.movieReducer})
-
+  
 
   return (
     <>

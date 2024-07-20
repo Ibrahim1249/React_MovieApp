@@ -8,7 +8,7 @@ import Shows from "./Components/TvShows"
 import SearchResults from "./Components/SearchResults";
 import SinglePage from "./Components/SinglePage";
 import Footer from "./Components/Footer";
-import { useLocation } from "react-router-dom";
+
 
 
 
@@ -25,7 +25,7 @@ function App() {
            <Route path="/movies" element={<Movies/>}></Route>
            <Route path="/shows" element={<Shows/>}></Route>
            <Route path="/search/:searchTerm" element={<SearchResults />}></Route>
-           <Route path="/single-page/:id" element={<SinglePage/>}></Route>
+           <Route path="/single-page/:media/:id" element={<SinglePage/>}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>
