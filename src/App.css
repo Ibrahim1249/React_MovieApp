@@ -412,6 +412,31 @@ font-weight: 400;
   background-color: #fff;
   border-radius: 50%;
   padding: 0.15rem;
+
+}
+.close{
+  position: absolute;
+  right: 5px;
+  top: 10px;
+  cursor: pointer;
+  transition: all 0.5s;
+    color: whitesmoke;
+}
+.close:hover{
+  color: rgb(228, 43, 43);
+}
+.trailer{
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.trailer-icon{
+  color: whitesmoke;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.trailer-icon:hover{
+  color: rgb(228, 43, 43);
 }
 .singleMoviePage .overview{
   margin-top: 1rem;

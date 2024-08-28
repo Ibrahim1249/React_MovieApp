@@ -15,7 +15,25 @@ function SinglePage() {
   const [singleSimilarMovie , setSingleSimilarMovie] = useState(null)
   const [singleRecommendedMovie , setSingleRecommendedMovie] = useState(null)
   const [loading , setLoading] = useState(false);
+  const [videos,setVideos] = useState([])
+  
 
+  const fetchVideos= async () => {
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/${media}/${id}/videos?language=en-US&api_key=${import.meta.env.VITE_TMDB_API_KEY}`
+      );
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const result = await response.json();
+      setVideos(result.results);
+    } catch (err) {
+      console.error("Error fetching movie videos:", err.message);
+    }
+  }  
 
   const fetchSingle= async()=>{
      try{
@@ -102,14 +120,19 @@ function SinglePage() {
    useEffect(()=>{
     fetchRecommended()
    },[id])
-
+   
+   useEffect(()=>{
+    fetchVideos()
+   },[id])
+   
+   console.log(videos)
 
   //  console.log(singleSimilarMovie , singleRecommendedMovie)
 
   return (
      <> 
 
-      {loading ? <SkeletonLayout /> : <SinglePageMovie singleMovie={singleMovie} singleMovieCredits={singleMovieCredits} singleSimilarMovie={singleSimilarMovie} singleRecommendedMovie={singleRecommendedMovie} />}
+      {loading ? <SkeletonLayout /> : <SinglePageMovie singleMovie={singleMovie} singleMovieCredits={singleMovieCredits} singleSimilarMovie={singleSimilarMovie} singleRecommendedMovie={singleRecommendedMovie} videos={videos}/>}
 
      </>
   )

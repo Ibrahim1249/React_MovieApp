@@ -3,8 +3,16 @@ import "react-circular-progressbar/dist/styles.css";
 import Credits from "./Credits";
 import Display from "./Display";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+import BasicModal from "./BasicModal";
 
-function SinglePageMovie({ singleMovie , singleMovieCredits , singleSimilarMovie , singleRecommendedMovie }) {
+function SinglePageMovie({ singleMovie , singleMovieCredits , singleSimilarMovie , singleRecommendedMovie , videos }) {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [trailer,setTrailer] = useState(null);
+  const [videoList , setVideoList] = useState()
   const { tvList , moviesList} = useSelector((state)=>{return state.movieReducer})
   const url = "https://image.tmdb.org/t/p/original";
   function formateDuration(){
@@ -22,6 +30,17 @@ function SinglePageMovie({ singleMovie , singleMovieCredits , singleSimilarMovie
     const date = new Date(dateString);
     return date.toLocaleDateString("en-US", options);
   }
+
+  useEffect(()=>{
+    const videoTrailer  = videos?.find((video)=> video.type === "Trailer");
+    const filterVideos = videos?.filter((video)=> video?.type !== "Trailer")
+    setTrailer(videoTrailer);
+    setVideoList(filterVideos)
+
+  },[videos])
+
+  console.log(trailer , videoList)
+
   return (
     <>
       <div className="singleMoviePage-container">
@@ -61,6 +80,7 @@ function SinglePageMovie({ singleMovie , singleMovieCredits , singleSimilarMovie
                })}
             </div>
 
+            <div className="trailer">
             <div className="single-rating">
               <CircularProgressbar
                 value={singleMovie?.vote_average ? singleMovie?.vote_average * 10 : 5 * 10}
@@ -80,6 +100,10 @@ function SinglePageMovie({ singleMovie , singleMovieCredits , singleSimilarMovie
                   textSize: "35px",
                 })}
               />
+            </div>
+            <div>
+                 <PlayCircleOutlineIcon className="trailer-icon" style={{fontSize:"5rem"}} onClick={handleOpen}/>
+              </div>
             </div>
 
              <div className="overview">
@@ -116,6 +140,7 @@ function SinglePageMovie({ singleMovie , singleMovieCredits , singleSimilarMovie
 
           </div>
         </div>
+        <BasicModal handleClose={handleClose} handleOpen={handleOpen} open={open} trailer={trailer} videoList={videoList}/>
       </div>
       <div className="single-credits-container">
          {singleMovieCredits && <Credits heading={"Top Cast"} option1={singleMovieCredits} isPadding={true}/>}
